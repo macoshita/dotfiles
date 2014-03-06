@@ -98,6 +98,8 @@ NeoBundle 'tpope/vim-pathogen'
 NeoBundle 'Shutnik/jshint2.vim'
 NeoBundle 'tomasr/molokai'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'derekwyatt/vim-scala'
 
 " Required:
 filetype plugin indent on
