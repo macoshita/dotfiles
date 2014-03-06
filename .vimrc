@@ -114,22 +114,14 @@ au BufNewFile,BufRead *.gradle setf groovy
 " -------------------------------------------------------
 " unite.vimの設定
 if has('mac')
-  let g:unite_kind_file_delete_file_command="trash $srcs"
-  let g:unite_kind_file_delete_directory_command="trash $srcs"
-endif
-
-" -------------------------------------------------------
-" unite.vimの設定
-if has('mac')
-  let g:unite_kind_file_delete_file_command="trash $srcs"
-  let g:unite_kind_file_delete_directory_command="trash $srcs"
+  let g:unite_kind_file_delete_file_command="rmtrash $srcs"
+  let g:unite_kind_file_delete_directory_command="rmtrash $srcs"
 endif
 
 " vimfilerの設定
 let g:vimfiler_as_default_explorer = 1 " vimfilerをdefault
 let g:vimfiler_safe_mode_by_default = 0 " safe modeをoff
 let g:vimfiler_enable_auto_cd = 1 " カレントディレクトリをvimfilerで表示中のディレクトリに変更
-let g:vimfiler_edit_action = 'tabopen' " タブで開く
 
 " -------------------------------------------------------
 " colorscheme設定
