@@ -44,6 +44,8 @@ set number
 set modifiable
 " ファイルの書き込みを有効にする
 set write
+" シンタックスハイライト
+syntax on
 
 "---------------------------------------------------------------------------
 " ファイル操作に関する設定:
@@ -88,11 +90,14 @@ NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'jQuery'
 NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'plasticboy/vim-markdown'
-NeoBundle 'vim-stylus'
+NeoBundle 'wavded/vim-stylus'
 NeoBundle 'itchyny/lightline.vim'
+NeoBundle 'mattn/emmet-vim'
+NeoBundle 'mustache/vim-mustache-handlebars'
 NeoBundle 'tpope/vim-pathogen'
 NeoBundle 'Shutnik/jshint2.vim'
 NeoBundle 'tomasr/molokai'
+NeoBundle 'tpope/vim-fugitive'
 
 " Required:
 filetype plugin indent on
@@ -104,13 +109,25 @@ NeoBundleCheck
 " ~/.vim/filetype.vim
 au BufNewFile,BufRead *.gradle setf groovy
 
-" シンタックスハイライト
-syntax on
+" -------------------------------------------------------
+" unite.vimの設定
+if has('mac')
+  let g:unite_kind_file_delete_file_command="trash $srcs"
+  let g:unite_kind_file_delete_directory_command="trash $srcs"
+endif
 
 " -------------------------------------------------------
+" unite.vimの設定
+if has('mac')
+  let g:unite_kind_file_delete_file_command="trash $srcs"
+  let g:unite_kind_file_delete_directory_command="trash $srcs"
+endif
+
 " vimfilerの設定
 let g:vimfiler_as_default_explorer = 1 " vimfilerをdefault
-let g:vimfiler_safe_mode_by_default = 0 "safe-modeを0
+let g:vimfiler_safe_mode_by_default = 0 " safe modeをoff
+let g:vimfiler_enable_auto_cd = 1 " カレントディレクトリをvimfilerで表示中のディレクトリに変更
+let g:vimfiler_edit_action = 'tabopen' " タブで開く
 
 " -------------------------------------------------------
 " colorscheme設定
@@ -120,3 +137,6 @@ let g:rehash256 = 1
 set background=dark
 colorscheme molokai
 
+" -------------------------------------------------------
+" emmet
+let g:user_emmet_mode='a'
