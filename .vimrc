@@ -44,21 +44,19 @@ set number
 set modifiable
 " ファイルの書き込みを有効にする
 set write
-" シンタックスハイライト
-syntax on
-
-"---------------------------------------------------------------------------
-" ファイル操作に関する設定:
-"
+" レジスタをクリップボードに変更
+set clipboard=unnamed
 " バックアップファイルを作成しない
 set nobackup
 set noswapfile
-
-set clipboard=unnamed
+" ambiguous widthな文字の幅を2にする
+set ambiwidth=double
 
 set list
 set listchars=tab:>-
 set whichwrap=b,s,h,l,<,>,[,]
+" シンタックスハイライト
+syntax on
 
 "---------------------------------------------------------------------------
 " NeoBundleの設定
