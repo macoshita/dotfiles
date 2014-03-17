@@ -110,6 +110,10 @@ NeoBundleCheck
 au BufNewFile,BufRead *.gradle setf groovy
 
 " -------------------------------------------------------
+" NeoComplCacheの設定
+let g:neocomplcache_enable_at_startup = 1
+
+" -------------------------------------------------------
 " unite.vimの設定
 if has('mac')
   let g:unite_kind_file_delete_file_command="rmtrash $srcs"
@@ -131,4 +135,9 @@ colorscheme molokai
 
 " -------------------------------------------------------
 " emmet
+let g:user_emmet_expandabbr_key = '<Tab>'
+let g:use_emmet_complete_tag = 1
 let g:user_emmet_mode='a'
+
+let g:user_emmet_install_global = 0
+autocmd FileType html,hbs,jade,css,styl,less,scss EmmetInstall
