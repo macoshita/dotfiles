@@ -51,14 +51,20 @@ set nobackup
 set noswapfile
 " ambiguous widthな文字の幅を2にする
 set ambiwidth=double
-
+" 指定した文字目に色を付ける
+set colorcolumn=80
+" ステータス行を2行に(lightline表示のため)
+set laststatus=2
+" 見えない文字を見える化
 set list
-set listchars=tab:>-
+" listモードの時の文字の表示
+set listchars=tab:▸\ ,extends:<,trail:-,eol:¬
+
 set whichwrap=b,s,h,l,<,>,[,]
 " シンタックスハイライト
 syntax on
 
-"---------------------------------------------------------------------------
+"------------------------------------------------------------------------------
 " NeoBundleの設定
 "
 if has('vim_starting')
@@ -98,6 +104,7 @@ NeoBundle 'tomasr/molokai'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'derekwyatt/vim-scala'
+NeoBundle 'othree/javascript-libraries-syntax.vim'
 
 " Required:
 filetype plugin indent on
@@ -127,7 +134,9 @@ let g:vimfiler_enable_auto_cd = 1 " カレントディレクトリをvimfilerで
 
 " -------------------------------------------------------
 " colorscheme設定
-let &t_Co=256
+if !has('gui_running')
+  set t_Co=256
+endif
 let g:molokai_original = 1
 let g:rehash256 = 1
 set background=dark
@@ -141,3 +150,7 @@ let g:user_emmet_mode='a'
 
 let g:user_emmet_install_global = 0
 autocmd FileType html,hbs,jade,css,styl,less,scss EmmetInstall
+
+" -----------------------------------------------------------------------------
+" javascript-libraries-syntax
+let g:used_javascript_libs = 'jquery,underscore,angularjs'
