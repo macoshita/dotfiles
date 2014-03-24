@@ -105,6 +105,8 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
+NeoBundle 'tyru/open-browser.vim'
+NeoBundle 'kannokanno/previm'
 
 " Required:
 filetype plugin indent on
@@ -148,9 +150,19 @@ let g:user_emmet_expandabbr_key = '<Tab>'
 let g:use_emmet_complete_tag = 1
 let g:user_emmet_mode='a'
 
-let g:user_emmet_install_global = 0
-autocmd FileType html,hbs,jade,css,styl,less,scss EmmetInstall
+let g:user_emmet_install_global = 1
+imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " -----------------------------------------------------------------------------
 " javascript-libraries-syntax
 let g:used_javascript_libs = 'jquery,underscore,angularjs'
+
+" -----------------------------------------------------------------------------
+" open-browser
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+
+" -----------------------------------------------------------------------------
+" previm
+au BufRead,BufNewFile *.md,*.markdown set filetype=markdown
