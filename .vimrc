@@ -105,6 +105,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'derekwyatt/vim-scala'
 NeoBundle 'othree/javascript-libraries-syntax.vim'
+NeoBundle 'rking/ag.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kannokanno/previm'
 
