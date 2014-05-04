@@ -151,9 +151,7 @@ colorscheme molokai
 let g:user_emmet_expandabbr_key = '<Tab>'
 let g:use_emmet_complete_tag = 1
 let g:user_emmet_mode='a'
-
 let g:user_emmet_install_global = 1
-imap <expr> <tab> emmet#expandAbbrIntelligent("\<tab>")
 
 " -----------------------------------------------------------------------------
 " javascript-libraries-syntax
