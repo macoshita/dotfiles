@@ -108,6 +108,7 @@ NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kannokanno/previm'
+NeoBundle 'thinca/vim-splash'
 
 " Required:
 filetype plugin indent on
@@ -167,3 +168,7 @@ vmap gx <Plug>(openbrowser-smart-search)
 " -----------------------------------------------------------------------------
 " previm
 au BufRead,BufNewFile *.md,*.markdown set filetype=markdown
+
+" -----------------------------------------------------------------------------
+" vim-splash
+let g:splash#path = $HOME . '/.dotfiles/vim-splash.txt'
