@@ -51,8 +51,6 @@ set nobackup
 set noswapfile
 " ambiguous widthな文字の幅を2にする
 set ambiwidth=double
-" 指定した文字目に色を付ける
-set colorcolumn=80
 " ステータス行を2行に(lightline表示のため)
 set laststatus=2
 " 見えない文字を見える化
@@ -61,8 +59,6 @@ set list
 set listchars=tab:▸\ ,extends:<,trail:-,eol:¬
 
 set whichwrap=b,s,h,l,<,>,[,]
-" シンタックスハイライト
-syntax on
 
 "------------------------------------------------------------------------------
 " NeoBundleの設定
@@ -75,17 +71,26 @@ if has('vim_starting')
 endif
 
 " Required:
-call neobundle#rc(expand('~/.vim/bundle/'))
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My Bundles here:
-NeoBundle 'Shougo/vimproc'
+NeoBundle 'Shougo/vimproc.vim', {
+      \ 'build' : {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin' : 'make -f make_cygwin.mak',
+      \     'mac' : 'make -f make_mac.mak',
+      \     'unix' : 'make -f make_unix.mak',
+      \    },
+      \ }
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'Shutnik/jshint2.vim'
 NeoBundle 'JavaScript-syntax'
@@ -93,7 +98,6 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'jQuery'
 NeoBundle 'leafgarland/typescript-vim'
-NeoBundle 'plasticboy/vim-markdown'
 NeoBundle 'wavded/vim-stylus'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'mattn/emmet-vim'
@@ -109,6 +113,9 @@ NeoBundle 'rking/ag.vim'
 NeoBundle 'tyru/open-browser.vim'
 NeoBundle 'kannokanno/previm'
 NeoBundle 'thinca/vim-splash'
+NeoBundle 'fatih/vim-go'
+
+call neobundle#end()
 
 " Required:
 filetype plugin indent on
@@ -116,6 +123,8 @@ filetype plugin indent on
 " If there are uninstalled bundles found on startup,
 " this will conveniently prompt you to install them.
 NeoBundleCheck
+
+syntax on
 
 " ~/.vim/filetype.vim
 au BufNewFile,BufRead *.gradle setf groovy
@@ -148,7 +157,7 @@ colorscheme molokai
 
 " -------------------------------------------------------
 " emmet
-let g:user_emmet_expandabbr_key = '<Tab>'
+let g:user_emmet_expandabbr_key = '<C-Z>'
 let g:use_emmet_complete_tag = 1
 let g:user_emmet_mode='a'
 let g:user_emmet_install_global = 1
@@ -170,3 +179,29 @@ au BufRead,BufNewFile *.md,*.markdown set filetype=markdown
 " -----------------------------------------------------------------------------
 " vim-splash
 let g:splash#path = $HOME . '/.dotfiles/vim-splash.txt'
+
+" -----------------------------------------------------------------------------
+" vim-go
+let g:go_disable_autoinstall = 1
+let g:go_fmt_command = "gofmt"
+let g:go_snippet_engine = "neosnippet"
+
+" -----------------------------------------------------------------------------
+" neosnippet
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: pumvisible() ? "\<C-n>" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)"
+\: "\<TAB>"
+
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
