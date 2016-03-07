@@ -20,6 +20,7 @@ Plug 'thinca/vim-splash'
 Plug 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 Plug 'altercation/vim-colors-solarized'
 Plug 'haya14busa/incsearch.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 
 call plug#end()
 
@@ -119,3 +120,5 @@ map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
+" CtrlP
+let g:ctrlp_user_command = ['.git', 'sh -c "cd %s && git ls-files -co --exclude-standard"']
