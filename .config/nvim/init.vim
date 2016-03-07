@@ -1,5 +1,5 @@
 " プラグインのインストール
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/unite.vim'
@@ -23,66 +23,34 @@ Plug 'haya14busa/incsearch.vim'
 
 call plug#end()
 
-" ファイル保存時の文字コード
-set fileencoding=utf-8
-" vim 内部の文字コード
-set encoding=utf-8
-" 改行コードが LF になる
-set fileformat=unix
-" 検索時に大文字小文字を無視
-set ignorecase
-" 大文字小文字の両方が含まれている場合は大文字小文字を区別
-set smartcase
-" 0の場合はtabstopと同じ BSにも影響する
-set tabstop=4
-set shiftwidth=4
-" Tabキー押し下げ時の挿入される空白の量
-set softtabstop=0
-" タブをスペースに展開する
-set expandtab
-" 自動でインデント
-set autoindent
-" 新しい行のインデントを前の行と同じ量にする
-set smartindent
-" バックスペースでインデントや改行を削除できるようにする
-set backspace=indent,eol,start
-" 一行に長い文章を書いていても自動折り返しをしない
-set textwidth=0
-" beep音を消す
-set vb t_vb=
-" 補完動作
-set wildmode=list:longest
-" タブを常に表示
-set showtabline=2
-" スクロール時の余白確保
-set scrolloff=5
-" 検索時にファイルの最後まで行ったら最初に戻る (nowrapscan:戻らない)
-set wrapscan
-" 括弧入力時に対応する括弧を表示 (noshowmatch:表示しない)
-set showmatch
-" コマンドライン補完するときに強化されたものを使う(参照 :help wildmenu)
-set wildmenu
-" 行番号表示
-set number
-" バッファを変更可能にする
-set modifiable
-" ファイルの書き込みを有効にする
-set write
-" レジスタをクリップボードに変更
-set clipboard=unnamed
-" バックアップファイルを作成しない
-set nobackup
+set fileencoding=utf-8    " ファイル保存時の文字コード
+set encoding=utf-8        " vim 内部の文字コード
+set fileformat=unix       " 改行コードが LF になる
+set ignorecase            " 検索時に大文字小文字を無視
+set smartcase             " 大文字小文字が含まれている場合は区別
+set wrapscan              " 検索時にファイルの最後まで行ったら最初に戻る
+set tabstop=4             " タブ文字のサイズ
+set shiftwidth=4          " 自動インデントのサイズ
+set softtabstop=0         " タブキーで入力されるスペース数 0でtabstop値
+set expandtab             " タブをスペースに展開する
+set autoindent            " 自動でインデント
+set smartindent           " 新しい行のインデントを前の行と同じ量にする
+set backspace=indent,eol,start " バックスペースでインデントや改行を削除
+set textwidth=0           " 自動折り返しをしない
+set vb t_vb=              " beep音を消す
+set wildmode=list:longest " 補完動作
+set showtabline=2         " タブを常に表示
+set scrolloff=5           " スクロール時の余白確保
+set showmatch             " 括弧入力時に対応する括弧を表示
+set wildmenu              " コマンドライン補完
+set number                " 行番号表示
+set clipboard=unnamed     " レジスタをクリップボードに変更
+set nobackup              " バックアップファイルを作成しない
 set noswapfile
-" ambiguous widthな文字の幅を2にする
-set ambiwidth=double
-" ステータス行を2行に(lightline表示のため)
-set laststatus=2
-" 見えない文字を見える化
-set list
-" listモードの時の文字の表示
-set listchars=tab:▸\ ,extends:<,trail:-,eol:¬
-" 行末・行頭での左右キーで移動可能にする
-"set whichwrap=b,s,h,l,<,>,[,]
+set ambiwidth=double      " ambiguous widthな文字の幅を2にする
+set laststatus=2          " ステータス行を2行に(lightline表示のため)
+set list                  " 見えない文字を見える化
+set listchars=tab:▸\ ,extends:<,trail:-,eol:¬ " listモードの時の文字の表示
 
 " colorscheme設定
 set background=dark
