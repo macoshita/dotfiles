@@ -10,8 +10,8 @@ set smartcase
 set incsearch
 " 0の場合はtabstopと同じ
 " BSにも影響する
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 " Tabキー押し下げ時の挿入される空白の量
 set softtabstop=0
 " タブをスペースに展開する
@@ -86,34 +86,24 @@ NeoBundle 'Shougo/vimproc.vim', {
       \     'unix' : 'make -f make_unix.mak',
       \    },
       \ }
+NeoBundle 'editorconfig/editorconfig-vim'
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/vimfiler.vim'
 NeoBundle 'Shougo/neocomplcache'
-NeoBundle 'Shougo/neosnippet'
-NeoBundle 'Shougo/neosnippet-snippets'
 NeoBundle 'othree/html5.vim'
 NeoBundle 'Shutnik/jshint2.vim'
-NeoBundle 'JavaScript-syntax'
-NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'kchmck/vim-coffee-script'
-NeoBundle 'jQuery'
-NeoBundle 'leafgarland/typescript-vim'
 NeoBundle 'wavded/vim-stylus'
 NeoBundle 'itchyny/lightline.vim'
 NeoBundle 'mattn/emmet-vim'
 NeoBundle 'mustache/vim-mustache-handlebars'
-NeoBundle 'tpope/vim-pathogen'
 NeoBundle 'Shutnik/jshint2.vim'
 NeoBundle 'tomasr/molokai'
-NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'derekwyatt/vim-scala'
-NeoBundle 'othree/javascript-libraries-syntax.vim'
 NeoBundle 'rking/ag.vim'
 NeoBundle 'tyru/open-browser.vim'
-NeoBundle 'kannokanno/previm'
 NeoBundle 'thinca/vim-splash'
-NeoBundle 'fatih/vim-go'
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 
 call neobundle#end()
 
@@ -163,45 +153,11 @@ let g:user_emmet_mode='a'
 let g:user_emmet_install_global = 1
 
 " -----------------------------------------------------------------------------
-" javascript-libraries-syntax
-let g:used_javascript_libs = 'jquery,underscore,angularjs'
-
-" -----------------------------------------------------------------------------
 " open-browser
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
 
 " -----------------------------------------------------------------------------
-" previm
-au BufRead,BufNewFile *.md,*.markdown set filetype=markdown
-
-" -----------------------------------------------------------------------------
 " vim-splash
 let g:splash#path = $HOME . '/.dotfiles/vim-splash.txt'
-
-" -----------------------------------------------------------------------------
-" vim-go
-let g:go_disable_autoinstall = 1
-let g:go_fmt_command = "gofmt"
-let g:go_snippet_engine = "neosnippet"
-
-" -----------------------------------------------------------------------------
-" neosnippet
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
