@@ -5,22 +5,22 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
 Plug 'Shougo/neocomplcache'
-Plug 'othree/html5.vim'
-Plug 'Shutnik/jshint2.vim'
-Plug 'kchmck/vim-coffee-script'
+"Plug 'othree/html5.vim'
+"Plug 'kchmck/vim-coffee-script'
 Plug 'wavded/vim-stylus'
 Plug 'itchyny/lightline.vim'
 Plug 'mattn/emmet-vim'
-Plug 'mustache/vim-mustache-handlebars'
+"Plug 'mustache/vim-mustache-handlebars'
 Plug 'Shutnik/jshint2.vim'
 Plug 'tpope/vim-surround'
 Plug 'rking/ag.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'thinca/vim-splash'
-Plug 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
+"Plug 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 Plug 'altercation/vim-colors-solarized'
 Plug 'haya14busa/incsearch.vim'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -121,4 +121,12 @@ map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
 
 " CtrlP
-let g:ctrlp_user_command = ['.git', 'sh -c "cd %s && git ls-files -co --exclude-standard"']
+if executable('ag')
+    let g:ctrlp_use_caching = 0
+    let g:ctrlp_user_command = {
+                \   'types': {
+                \     1: ['.git', 'sh -c "cd %s && git ls-files . -co --exclude-standard"']
+                \   },
+                \   'fallback': 'ag -l --nocolor -g "" %s'
+                \ }
+endif
