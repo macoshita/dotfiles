@@ -18,6 +18,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'posva/vim-vue'
+Plug 'digitaltoad/vim-pug'
 
 call plug#end()
 
@@ -53,6 +54,7 @@ set listchars=tab:▸\ ,extends:<,trail:-,eol:¬ " listモードの時の文字�
 " filetype
 au BufNewFile,BufRead *.gradle set filetype=groovy
 au BufNewFile,BufRead *.html set filetype=html.handlebars syntax=mustache
+au BufNewFile,BufRead *.vue set filetype=html syntax=vue
 
 " colorscheme設定
 set background=dark
