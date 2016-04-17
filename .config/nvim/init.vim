@@ -5,22 +5,19 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
 Plug 'Shougo/neocomplcache'
-"Plug 'othree/html5.vim'
-"Plug 'kchmck/vim-coffee-script'
 Plug 'wavded/vim-stylus'
 Plug 'itchyny/lightline.vim'
 Plug 'mattn/emmet-vim'
-"Plug 'mustache/vim-mustache-handlebars'
 Plug 'Shutnik/jshint2.vim'
 Plug 'tpope/vim-surround'
 Plug 'rking/ag.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'thinca/vim-splash'
-"Plug 'jelera/vim-javascript-syntax', {'autoload':{'filetypes':['javascript']}}
 Plug 'altercation/vim-colors-solarized'
 Plug 'haya14busa/incsearch.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'posva/vim-vue'
 
 call plug#end()
 
@@ -53,6 +50,10 @@ set laststatus=2          " ステータス行を2行に(lightline表示のた�
 set list                  " 見えない文字を見える化
 set listchars=tab:▸\ ,extends:<,trail:-,eol:¬ " listモードの時の文字の表示
 
+" filetype
+au BufNewFile,BufRead *.gradle set filetype=groovy
+au BufNewFile,BufRead *.html set filetype=html.handlebars syntax=mustache
+
 " colorscheme設定
 set background=dark
 colorscheme solarized
@@ -75,9 +76,6 @@ let g:lightline = {
       \ 'separator': { 'left': '⮀', 'right': '⮂' },
       \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
       \ }
-
-" ~/.vim/filetype.vim
-au BufNewFile,BufRead *.gradle setf groovy
 
 " NeoComplCacheの設定
 let g:neocomplcache_enable_at_startup = 1
@@ -130,3 +128,6 @@ if executable('ag')
                 \   'fallback': 'ag -l --nocolor -g "" %s'
                 \ }
 endif
+
+" .vimrc
+nmap ,v :edit $MYVIMRC<CR>
