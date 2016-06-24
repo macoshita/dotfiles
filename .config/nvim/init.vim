@@ -4,7 +4,7 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
-Plug 'Shougo/neocomplcache'
+"Plug 'Shougo/neocomplcache'
 Plug 'wavded/vim-stylus'
 Plug 'itchyny/lightline.vim'
 Plug 'mattn/emmet-vim'
@@ -18,7 +18,6 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'posva/vim-vue'
-Plug 'digitaltoad/vim-pug'
 
 call plug#end()
 
@@ -57,6 +56,7 @@ au BufNewFile,BufRead *.html set filetype=html.handlebars syntax=mustache
 au BufNewFile,BufRead *.vue set filetype=html syntax=vue
 
 " colorscheme設定
+let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 
