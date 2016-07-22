@@ -10,7 +10,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'mattn/emmet-vim'
 Plug 'Shutnik/jshint2.vim'
 Plug 'tpope/vim-surround'
-Plug 'rking/ag.vim'
+Plug 'mileszs/ack.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'thinca/vim-splash'
 Plug 'altercation/vim-colors-solarized'
@@ -92,6 +92,8 @@ endif
 let g:vimfiler_as_default_explorer = 1 " vimfilerをdefault
 let g:vimfiler_safe_mode_by_default = 0 " safe modeをoff
 let g:vimfiler_enable_auto_cd = 1 " カレントディレクトリをvimfilerで表示中のディレクトリに変更
+nnoremap <C-o> :<C-u>VimFilerTab<CR>
+inoremap <C-o> <ESC>:<C-u>VimFilerTab<CR>
 
 " emmet
 let g:user_emmet_expandabbr_key = '<C-E>'
@@ -130,6 +132,16 @@ if executable('ag')
                 \   'fallback': 'ag -l --nocolor -g "" %s'
                 \ }
 endif
+
+" ack.vim
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+" <Space>/ で Ag 検索
+nnoremap <space>/ :Ack!<Space>
+" デフォルトだと検索した時に一番上の結果を開いてしまうのでそれを止める
+cnoreabbrev Ack Ack!
+nnoremap <Leader>a :Ack!<Space>
 
 " .vimrc
 nmap ,v :edit $MYVIMRC<CR>
