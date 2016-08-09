@@ -4,7 +4,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
-"Plug 'Shougo/neocomplcache'
 Plug 'wavded/vim-stylus'
 Plug 'itchyny/lightline.vim'
 Plug 'mattn/emmet-vim'
@@ -45,7 +44,6 @@ set number                " 行番号表示
 set clipboard=unnamed     " レジスタをクリップボードに変更
 set nobackup              " バックアップファイルを作成しない
 set noswapfile
-set ambiwidth=double      " ambiguous widthな文字の幅を2にする
 set laststatus=2          " ステータス行を2行に(lightline表示のため)
 set list                  " 見えない文字を見える化
 set listchars=tab:▸\ ,extends:<,trail:-,eol:¬ " listモードの時の文字の表示
@@ -145,3 +143,6 @@ nnoremap <Leader>a :Ack!<Space>
 
 " .vimrc
 nmap ,v :edit $MYVIMRC<CR>
+
+" vim-markdown (from vim-polyglot)
+let g:vim_markdown_frontmatter = 1
