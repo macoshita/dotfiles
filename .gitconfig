@@ -2,7 +2,4 @@
 	gui = !open -a SourceTree .
 	st = status
 	new = "!f() { git fetch && git checkout --no-track -b $1 origin/master; }; f"
-	del-merged = "!f() { git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d; }; f"
-[user]
-	name = macoshita
-	email = macoshita@gmail.com
+	del-merged = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
