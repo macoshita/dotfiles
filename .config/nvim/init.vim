@@ -17,6 +17,7 @@ Plug 'haya14busa/incsearch.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'posva/vim-vue'
+Plug 'tyru/caw.vim'
 
 call plug#end()
 
