@@ -26,8 +26,8 @@ set fileformat=unix       " 改行コードが LF になる
 set ignorecase            " 検索時に大文字小文字を無視
 set smartcase             " 大文字小文字が含まれている場合は区別
 set wrapscan              " 検索時にファイルの最後まで行ったら最初に戻る
-set tabstop=4             " タブ文字のサイズ
-set shiftwidth=4          " 自動インデントのサイズ
+set tabstop=2             " タブ文字のサイズ
+set shiftwidth=2          " 自動インデントのサイズ
 set softtabstop=0         " タブキーで入力されるスペース数 0でtabstop値
 set expandtab             " タブをスペースに展開する
 set autoindent            " 自動でインデント
