@@ -5,4 +5,4 @@
 	cb = "!f() { git fetch --prune && git checkout -b $1 origin/$1; }; f"
 	del-merged = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
 [push]
-	default = simple
+	default = current
