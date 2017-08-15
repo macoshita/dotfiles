@@ -4,18 +4,11 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'mattn/emmet-vim'
-Plug 'Shutnik/jshint2.vim'
 Plug 'tpope/vim-surround'
 Plug 'mileszs/ack.vim'
 Plug 'tyru/open-browser.vim'
-Plug 'thinca/vim-splash'
-Plug 'altercation/vim-colors-solarized'
-Plug 'haya14busa/incsearch.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'tyru/caw.vim'
 
 call plug#end()
 
@@ -43,41 +36,9 @@ set number                " 行番号表示
 set clipboard=unnamed     " レジスタをクリップボードに変更
 set nobackup              " バックアップファイルを作成しない
 set noswapfile
-set laststatus=2          " ステータス行を2行に(lightline表示のため)
 set list                  " 見えない文字を見える化
+set laststatus=2          " ステータス行を2行に
 set listchars=tab:▸\ ,extends:<,trail:-,eol:¬ " listモードの時の文字の表示
-
-" filetype
-au BufNewFile,BufRead *.gradle set filetype=groovy
-au BufNewFile,BufRead *.html set filetype=html.handlebars syntax=mustache
-au BufNewFile,BufRead *.vue set filetype=html syntax=vue
-
-" colorscheme設定
-let g:solarized_termcolors=256
-set background=dark
-colorscheme solarized
-
-" lightline
-if !has('gui_running')
-  set t_Co=256
-endif
-
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"⭤":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}'
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))'
-      \ },
-      \ 'separator': { 'left': '⮀', 'right': '⮂' },
-      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
-      \ }
-
-" NeoComplCacheの設定
-let g:neocomplcache_enable_at_startup = 1
 
 " unite.vimの設定
 if has('mac')
@@ -92,32 +53,9 @@ let g:vimfiler_enable_auto_cd = 1 " カレントディレクトリをvimfilerで
 nnoremap <C-o> :<C-u>VimFilerTab<CR>
 inoremap <C-o> <ESC>:<C-u>VimFilerTab<CR>
 
-" emmet
-let g:user_emmet_expandabbr_key = '<C-E>'
-let g:user_emmet_install_global = 0
-autocmd FileType html,css,hbs EmmetInstall
-
 " open-browser
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
-nmap gx <Plug>(openbrowser-smart-search)
-vmap gx <Plug>(openbrowser-smart-search)
-
-" vim-splash
-let g:splash#path = $HOME . '/.dotfiles/vim-splash.txt'
-
-" incsearch.vim
-" :h g:incsearch#auto_nohlsearch
-set hlsearch
-let g:incsearch#auto_nohlsearch = 1
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
+map gx <Plug>(openbrowser-smart-search)
 
 " CtrlP
 if executable('ag')
@@ -140,7 +78,7 @@ nnoremap <space>/ :Ack!<Space>
 cnoreabbrev Ack Ack!
 nnoremap <Leader>a :Ack!<Space>
 
-" .vimrc
+" .config/nvim/init.vim を開く
 nmap ,v :edit $MYVIMRC<CR>
 
 " vim-markdown (from vim-polyglot)

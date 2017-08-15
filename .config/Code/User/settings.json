@@ -1,0 +1,12 @@
+// Place your settings in this file to overwrite the default settings
+{
+	"editor.fontSize": 14,
+	"editor.tabSize": 2,
+	"terminal.integrated.fontSize": 14,
+	"vim.useSystemClipboard": true,
+	"vim.disableAnnoyingNeovimMessage": true,
+	"window.newWindowDimensions": "maximized",
+	"window.restoreWindows": "none",
+	"workbench.colorTheme": "Solarized Light",
+	"workbench.startupEditor": "none"
+}
