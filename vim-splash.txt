@@ -1,3 +1,0 @@
-@macoshita
-Services : Twitter, GitHub, Qiita
-Blog     : http://macolog.me
