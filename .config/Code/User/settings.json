@@ -8,5 +8,6 @@
 	"window.newWindowDimensions": "maximized",
 	"window.restoreWindows": "none",
 	"workbench.colorTheme": "Solarized Light",
-	"workbench.startupEditor": "none"
+	"workbench.startupEditor": "none",
+	"emmet.triggerExpansionOnTab": true
 }
