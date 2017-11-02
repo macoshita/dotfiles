@@ -9,5 +9,7 @@
 	"window.restoreWindows": "none",
 	"workbench.colorTheme": "Solarized Light",
 	"workbench.startupEditor": "none",
-	"emmet.triggerExpansionOnTab": true
+	"emmet.triggerExpansionOnTab": true,
+	"extensions.ignoreRecommendations": false,
+	"editor.renderWhitespace": "boundary"
 }
