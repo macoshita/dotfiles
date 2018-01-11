@@ -9,6 +9,14 @@ Plug 'mileszs/ack.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sheerun/vim-polyglot'
+Plug 'mattn/emmet-vim'
+Plug 'jacoborus/tender.vim'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'junegunn/fzf'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
 
@@ -39,6 +47,14 @@ set noswapfile
 set list                  " 見えない文字を見える化
 set laststatus=2          " ステータス行を2行に
 set listchars=tab:▸\ ,extends:<,trail:-,eol:¬ " listモードの時の文字の表示
+set mouse=a               " マウスモード有効
+
+if (has("termguicolors"))
+ set termguicolors
+endif
+
+syntax enable
+colorscheme tender
 
 " unite.vimの設定
 if has('mac')
@@ -72,14 +88,30 @@ endif
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-" <Space>/ で Ag 検索
-nnoremap <space>/ :Ack!<Space>
-" デフォルトだと検索した時に一番上の結果を開いてしまうのでそれを止める
-cnoreabbrev Ack Ack!
-nnoremap <Leader>a :Ack!<Space>
+" Ctrl + Shift + F で ag できるようにする
+nmap <C-S-F> :Ack!<space>
 
 " .config/nvim/init.vim を開く
 nmap ,v :edit $MYVIMRC<CR>
 
 " vim-markdown (from vim-polyglot)
 let g:vim_markdown_frontmatter = 1
+
+" vue のシンタックスハイライトがたまに切れる問題の対処
+" https://github.com/posva/vim-vue
+autocmd FileType vue syntax sync fromstart
+
+call deoplete#enable()
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'javascript': ['javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'vue': ['vls'],
+    \ }
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
