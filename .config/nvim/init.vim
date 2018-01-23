@@ -7,7 +7,6 @@ Plug 'Shougo/vimfiler.vim'
 Plug 'tpope/vim-surround'
 Plug 'mileszs/ack.vim'
 Plug 'tyru/open-browser.vim'
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
 Plug 'jacoborus/tender.vim'
@@ -30,7 +29,6 @@ set tabstop=2             " タブ文字のサイズ
 set shiftwidth=2          " 自動インデントのサイズ
 set softtabstop=0         " タブキーで入力されるスペース数 0でtabstop値
 set expandtab             " タブをスペースに展開する
-set autoindent            " 自動でインデント
 set smartindent           " 新しい行のインデントを前の行と同じ量にする
 set backspace=indent,eol,start " バックスペースでインデントや改行を削除
 set textwidth=0           " 自動折り返しをしない
@@ -73,23 +71,52 @@ inoremap <C-o> <ESC>:<C-u>VimFilerTab<CR>
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 map gx <Plug>(openbrowser-smart-search)
 
-" CtrlP
-if executable('ag')
-    let g:ctrlp_use_caching = 0
-    let g:ctrlp_user_command = {
-                \   'types': {
-                \     1: ['.git', 'sh -c "cd %s && git ls-files . -co --exclude-standard"']
-                \   },
-                \   'fallback': 'ag -l --nocolor -g "" %s'
-                \ }
-endif
+" FZF
+map <C-P> :FZF<CR>
+
+function! s:ag_to_qf(line)
+  let parts = split(a:line, ':')
+  return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
+        \ 'text': join(parts[3:], ':')}
+endfunction
+
+function! s:ag_handler(lines)
+  if len(a:lines) < 2 | return | endif
+
+  let cmd = get({'ctrl-x': 'split',
+               \ 'ctrl-v': 'vertical split',
+               \ 'ctrl-t': 'tabe'}, a:lines[0], 'e')
+  let list = map(a:lines[1:], 's:ag_to_qf(v:val)')
+
+  let first = list[0]
+  execute cmd escape(first.filename, ' %#\')
+  execute first.lnum
+  execute 'normal!' first.col.'|zz'
+
+  if len(list) > 1
+    call setqflist(list)
+    copen
+    wincmd p
+  endif
+endfunction
+
+command! -nargs=* Ag call fzf#run({
+\ 'source':  printf('ag --nogroup --column --color "%s"',
+\                   escape(empty(<q-args>) ? '^(?=.)' : <q-args>, '"\')),
+\ 'sink*':    function('<sid>ag_handler'),
+\ 'options': '--ansi --expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
+\            '--multi --bind=ctrl-a:select-all,ctrl-d:deselect-all '.
+\            '--color hl:68,hl+:110',
+\ 'down':    '30%'
+\ })
+
+" Ctrl + Shift + F で ag できるようにする
+nmap <C-S-F> :Ag<CR>
 
 " ack.vim
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
-" Ctrl + Shift + F で ag できるようにする
-nmap <C-S-F> :Ack!<space>
 
 " .config/nvim/init.vim を開く
 nmap ,v :edit $MYVIMRC<CR>
@@ -99,7 +126,7 @@ let g:vim_markdown_frontmatter = 1
 
 " vue のシンタックスハイライトがたまに切れる問題の対処
 " https://github.com/posva/vim-vue
-autocmd FileType vue syntax sync fromstart
+autocmd FileType vue,hbs,html syntax sync fromstart
 
 call deoplete#enable()
 
