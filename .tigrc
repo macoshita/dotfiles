@@ -3,3 +3,4 @@ bind generic + !git commit --amend
 bind main    R !git rebase -i %(commit)
 bind diff    R !git rebase -i %(commit)
 set diff-options = -m --first-parent
+set refresh-mode = after-command
