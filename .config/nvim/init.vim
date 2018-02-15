@@ -74,6 +74,7 @@ map gx <Plug>(openbrowser-smart-search)
 " FZF
 map <C-P> :FZF<CR>
 
+" https://github.com/junegunn/fzf/wiki/Examples-(vim)#narrow-ag-results-within-vim
 function! s:ag_to_qf(line)
   let parts = split(a:line, ':')
   return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
