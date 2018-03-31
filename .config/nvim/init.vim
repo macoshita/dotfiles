@@ -140,6 +140,7 @@ let g:LanguageClient_serverCommands = {
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
     \ 'typescript': ['javascript-typescript-stdio'],
     \ 'vue': ['vls'],
+    \ 'python': ['pyls'],
     \ }
 
 nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
