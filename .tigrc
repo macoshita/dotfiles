@@ -2,5 +2,10 @@ bind status D !@?rm %(file)
 bind generic + !git commit --amend
 bind main    R !git rebase -i %(commit)
 bind diff    R !git rebase -i %(commit)
+
+# Viewable merge commit
 set diff-options = -m --first-parent
-set refresh-mode = after-command
+
+# Refresh every 10 seconds
+set refresh-mode = periodic
+set refresh-interval = 10
