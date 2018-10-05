@@ -5,7 +5,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'Shougo/unite.vim'
 Plug 'Shougo/vimfiler.vim'
 Plug 'tpope/vim-surround'
-Plug 'mileszs/ack.vim'
 Plug 'tyru/open-browser.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'mattn/emmet-vim'
@@ -114,11 +113,6 @@ command! -nargs=* Ag call fzf#run({
 
 " Ctrl + Shift + F で ag できるようにする
 nmap <C-S-F> :Ag<CR>
-
-" ack.vim
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
 
 " .config/nvim/init.vim を開く
 nmap ,v :edit $MYVIMRC<CR>
