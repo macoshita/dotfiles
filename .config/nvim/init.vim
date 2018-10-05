@@ -75,19 +75,19 @@ map gx <Plug>(openbrowser-smart-search)
 map <C-P> :FZF<CR>
 
 " https://github.com/junegunn/fzf/wiki/Examples-(vim)#narrow-ag-results-within-vim
-function! s:ag_to_qf(line)
+function! s:rg_to_qf(line)
   let parts = split(a:line, ':')
   return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
         \ 'text': join(parts[3:], ':')}
 endfunction
 
-function! s:ag_handler(lines)
+function! s:rg_handler(lines)
   if len(a:lines) < 2 | return | endif
 
   let cmd = get({'ctrl-x': 'split',
                \ 'ctrl-v': 'vertical split',
                \ 'ctrl-t': 'tabe'}, a:lines[0], 'e')
-  let list = map(a:lines[1:], 's:ag_to_qf(v:val)')
+  let list = map(a:lines[1:], 's:rg_to_qf(v:val)')
 
   let first = list[0]
   execute cmd escape(first.filename, ' %#\')
@@ -101,18 +101,18 @@ function! s:ag_handler(lines)
   endif
 endfunction
 
-command! -nargs=* Ag call fzf#run({
-\ 'source':  printf('ag --nogroup --column --color "%s"',
+command! -nargs=* Rg call fzf#run({
+\ 'source':  printf('rg --no-heading --column --pcre2 "%s"',
 \                   escape(empty(<q-args>) ? '^(?=.)' : <q-args>, '"\')),
-\ 'sink*':    function('<sid>ag_handler'),
+\ 'sink*':    function('<sid>rg_handler'),
 \ 'options': '--ansi --expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
 \            '--multi --bind=ctrl-a:select-all,ctrl-d:deselect-all '.
 \            '--color hl:68,hl+:110',
 \ 'down':    '30%'
 \ })
 
-" Ctrl + Shift + F で ag できるようにする
-nmap <C-S-F> :Ag<CR>
+" Ctrl + Shift + F で rg できるようにする
+nmap <C-S-F> :Rg<CR>
 
 " .config/nvim/init.vim を開く
 nmap ,v :edit $MYVIMRC<CR>
