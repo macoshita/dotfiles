@@ -85,6 +85,7 @@ let g:vim_markdown_frontmatter = 1
 " https://github.com/posva/vim-vue
 autocmd FileType vue,hbs,html syntax sync fromstart
 
+" deoplete
 call deoplete#enable()
 
 " Required for operations modifying multiple buffers like rename.
