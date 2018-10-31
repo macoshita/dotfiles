@@ -13,8 +13,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug '/usr/local/opt/fzf', { 'do': './install --bin' }
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 call plug#end()
@@ -71,47 +71,8 @@ inoremap <C-o> <ESC>:<C-u>VimFilerTab<CR>
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 map gx <Plug>(openbrowser-smart-search)
 
-" FZF
+" FZF, FZF.vim
 map <C-P> :FZF<CR>
-
-" https://github.com/junegunn/fzf/wiki/Examples-(vim)#narrow-ag-results-within-vim
-function! s:rg_to_qf(line)
-  let parts = split(a:line, ':')
-  return {'filename': parts[0], 'lnum': parts[1], 'col': parts[2],
-        \ 'text': join(parts[3:], ':')}
-endfunction
-
-function! s:rg_handler(lines)
-  if len(a:lines) < 2 | return | endif
-
-  let cmd = get({'ctrl-x': 'split',
-               \ 'ctrl-v': 'vertical split',
-               \ 'ctrl-t': 'tabe'}, a:lines[0], 'e')
-  let list = map(a:lines[1:], 's:rg_to_qf(v:val)')
-
-  let first = list[0]
-  execute cmd escape(first.filename, ' %#\')
-  execute first.lnum
-  execute 'normal!' first.col.'|zz'
-
-  if len(list) > 1
-    call setqflist(list)
-    copen
-    wincmd p
-  endif
-endfunction
-
-command! -nargs=* Rg call fzf#run({
-\ 'source':  printf('rg --no-heading --column --pcre2 "%s"',
-\                   escape(empty(<q-args>) ? '^(?=.)' : <q-args>, '"\')),
-\ 'sink*':    function('<sid>rg_handler'),
-\ 'options': '--ansi --expect=ctrl-t,ctrl-v,ctrl-x --delimiter : --nth 4.. '.
-\            '--multi --bind=ctrl-a:select-all,ctrl-d:deselect-all '.
-\            '--color hl:68,hl+:110',
-\ 'down':    '30%'
-\ })
-
-" Ctrl + Shift + F で rg できるようにする
 nmap <C-S-F> :Rg<CR>
 
 " .config/nvim/init.vim を開く
