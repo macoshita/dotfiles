@@ -7,15 +7,10 @@ Plug 'Shougo/vimfiler.vim'
 Plug 'tpope/vim-surround'
 Plug 'tyru/open-browser.vim'
 Plug 'sheerun/vim-polyglot'
-Plug 'mattn/emmet-vim'
 Plug 'jacoborus/tender.vim'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -46,6 +41,7 @@ set list                  " 見えない文字を見える化
 set laststatus=2          " ステータス行を2行に
 set listchars=tab:▸\ ,extends:<,trail:-,eol:¬ " listモードの時の文字の表示
 set mouse=a               " マウスモード有効
+set signcolumn=yes
 
 if (has("termguicolors"))
  set termguicolors
@@ -84,23 +80,3 @@ let g:vim_markdown_frontmatter = 1
 " vue のシンタックスハイライトがたまに切れる問題の対処
 " https://github.com/posva/vim-vue
 autocmd FileType vue,hbs,html syntax sync fromstart
-
-" deoplete
-call deoplete#enable()
-
-" Required for operations modifying multiple buffers like rename.
-set hidden
-
-let g:LanguageClient_serverCommands = {
-    \ 'javascript': ['javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['javascript-typescript-stdio'],
-    \ 'typescript': ['javascript-typescript-stdio'],
-    \ 'vue': ['vls'],
-    \ 'python': ['pyls'],
-    \ 'rust': ['rls'],
-    \ }
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient_textDocument_rename()<CR>
-set signcolumn=yes
