@@ -1,3 +1,5 @@
+[include]
+	path = .gitconfig.local
 [alias]
 	st = status
 	new = "!f() { git fetch --prune && git checkout --no-track -b $1 origin/master; }; f"
