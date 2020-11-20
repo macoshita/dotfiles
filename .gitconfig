@@ -1,19 +1,15 @@
 [include]
-	path = .gitconfig.local
+	path = .gitconfig.default
+[includeif "gitdir:~/ghq/github.com"]
+	path = .gitconfig.github
 [alias]
 	st = status
 	new = "!f() { git fetch --prune && git checkout --no-track -b $1 origin/master; }; f"
 	cb = "!f() { git fetch --prune && git checkout -b $1 origin/$1; }; f"
 	del-merged = "!git branch --merged | grep -v '\\*' | xargs -n 1 git branch -d"
-[push]
-	default = current
 [core]
 	excludesfile = ~/.gitignore_global
 	ignorecase = false
 	editor = nvim
-[merge]
-	tool = vimdiff
-[mergetool]
-	prompt = true
-[mergetool "vimdiff"]
-	cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+[url "git@github.com:"]
+	insteadOf = https://github.com
