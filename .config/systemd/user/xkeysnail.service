@@ -1,0 +1,21 @@
+# 1. Copy this from ~/.config/systemd/user/xkeysnail.service
+# 2. systemctl --user enable xkeysnail
+
+[Unit]
+Description=xkeysnail
+
+[Service]
+KillMode=process
+ExecStart=/usr/local/bin/xkeysnail /home/macoshita/.config/xkeysnail/config.py
+#ExecStartPre=/usr/bin/xhost +SI:localuser:root
+#↑input/uinputグループの権限で実行するのでrootでxhostに接続する必要なし．
+# むしろ，こいつがエラーを引き起こす
+Type=simple
+Restart=always
+
+# Update DISPLAY to be the same as `echo $DISPLAY` on your graphical terminal.
+#Environment=DISPLAY=:0
+#↑sudoでxkeysnailを起動する時は，上のxhostのコマンドとセットで必要となるが，今回はいらない．
+
+[Install]
+WantedBy=default.target
