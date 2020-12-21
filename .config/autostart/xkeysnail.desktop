@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Version=0.3.0
+Name=xkeysnail
+GenericName=Keymapper
+Exec=/home/macoshita/.xkeysnail/start.sh
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
