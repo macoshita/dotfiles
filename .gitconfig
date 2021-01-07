@@ -19,3 +19,5 @@
 	ff = only
 [merge]
 	ff = false
+[rebase]
+	autoSquash = true
