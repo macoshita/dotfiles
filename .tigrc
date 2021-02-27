@@ -1,4 +1,0 @@
-bind status D !@?rm %(file)
-bind generic + !git commit --amend
-bind main    R !git rebase -i %(commit)
-bind diff    R !git rebase -i %(commit)
