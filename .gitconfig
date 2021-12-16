@@ -26,3 +26,5 @@
 	generic = + !git commit --amend
 	main = R !git rebase -i %(commit)
 	main = = !git commit --fixup=%(commit)
+[init]
+	defaultBranch = main
