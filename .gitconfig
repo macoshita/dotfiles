@@ -1,6 +1,6 @@
 [include]
 	path = .gitconfig.default
-[includeif "gitdir:~/ghq/github.com"]
+[includeIf "gitdir:~/ghq/github.com/"]
 	path = .gitconfig.github
 [alias]
 	st = status
