@@ -7,8 +7,6 @@
 
 snap でのインストールは、現時点では日本語が打てない問題が起きがちで、避けたほうがいい。[各パッケージが対応版を出してくれないとだめらしい](https://forum.snapcraft.io/t/compatibility-with-cjkv-input-method-frameworks/7788)
 
-[homebrew](https://brew.sh/) を早い段階で入れて、諸々のインストールはそれでやる方針。多分邪道。
-
 ## 各種設定
 
 ### ダウンロードフォルダなどを英語化
@@ -61,44 +59,15 @@ network:
   version: 2
 ```
 
-### pbcopy, pbpaste
+### Fcitx
 
-xsel は（多分）最初から入ってるはず
-
-```fish
-alias pbcopy 'xsel --clipboard --input'
-alias pbpaste 'xsel --clipboard --output'
-```
-
-## 各種インストール
-
-
-### Google Chrome
-
-deb を落としてソフトウェアのインストールを選んでもエラーでインストールできない。(2020/12)
-`sudo dpkg -i google-chrome-stable.deb` でインストールする。
-
-### xkeysnail
-
-https://github.com/mooz/xkeysnail よりインストール後に下記を順々に実行。
-
-`type xkeysnail` で場所を確認し、 `/usr/local/bin/xkeysnail` 以外の場所に入ってたら `.xkeysnail/start.sh` の編集および下記のスクリプトの修正も必要。
+以下でインストール。
 
 ```bash
-cd ~
-ln -s ~/ghq/github.com/macoshita/dotfiles/.xkeysnail
-ln -s ~/ghq/github.com/macoshita/dotfiles/.config/autostart/xkeysnail.desktop .config/autostart/
-sudo visudo /etc/sudoers.d/xkeysnail
-# macoshita ALL=(ALL) NOPASSWD: /usr/local/bin/xkeysnail
+$ sudo apt install fcitx5-mozc
+$ im-config -n fcitx5
 ```
 
-`.xkeysnail/config.py` は現状下記の設定がなされる
+下記のように設定すれば、 ALT キー空打ちで日本語入力を切り替えられる。
 
-- 右 ALT 単体押しで「変換」
-- 左 ALT 単体押しで「無変換」
-- CAPS LOCK を CTRL にできる。
-
-あとは Mozc の設定で下記のようにしてやれば、左右 ALT 単体押しで IME の有効・無効を切り替えられる。
-
-![Mozc](./images/mozc.png)
-
+![fcitx](./images/fcitx.png)
