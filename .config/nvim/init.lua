@@ -1,0 +1,15 @@
+vim.opt.clipboard = 'unnamed' -- レジスタをクリップボードに変更
+vim.opt.smartcase = true      -- 大文字小文字が含まれている場合は区別
+vim.opt.wrapscan = true       -- 検索時にファイルの最後まで行ったら最初に戻る
+vim.opt.tabstop = 2           -- タブ文字のサイズ
+vim.opt.shiftwidth = 2        -- 自動インデントのサイズ
+vim.opt.softtabstop = 0       -- タブキーで入力されるスペース数 0でtabstop値
+vim.opt.expandtab = true      -- タブをスペースに展開する
+vim.opt.smartindent = true    -- 新しい行のインデントを前の行と同じ量にする
+vim.opt.backspace = { 'indent', 'eol', 'start' } -- バックスペースでインデントや改行を削除
+vim.opt.showtabline = 2       -- タブを常に表示
+vim.opt.scrolloff = 5         -- スクロール時の余白確保
+vim.opt.number = true         -- 行番号表示
+vim.opt.list = true           -- 見えない文字を見える化
+vim.opt.backup = false        -- バックアップファイルを作成しない
+vim.opt.swapfile = false      -- スワップファイルを作成しない
